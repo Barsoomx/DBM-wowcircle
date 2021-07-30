@@ -118,7 +118,6 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(uId, spellName)
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	print(msg:find(L.MageAlliance), msg==L.MageAlliance, msg:find(L.MageHorde), msg==L.MageHorde)
 	if msg:find(L.PullAlliance) or msg:find(L.PullHorde) then
 		timerCombatStart:Start()
 	elseif ( (msg:find(L.AddsAlliance) or msg==L.AddsAlliance) or (msg:find(L.AddsHorde) or msg==L.AddsHorde) ) and self:IsInCombat() then

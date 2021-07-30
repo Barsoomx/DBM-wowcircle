@@ -20,6 +20,7 @@ local warnGravityBomb				= mod:NewTargetAnnounce(64234, 3)
 local specWarnLightBomb				= mod:NewSpecialWarningYou(65121)
 local specWarnGravityBomb			= mod:NewSpecialWarningYou(64234)
 local specWarnConsumption			= mod:NewSpecialWarningMove(64206)--Hard mode void zone dropped by Gravity Bomb
+local yellGravityBomb				= mod:NewShortFadesYell(64234)
 
 local enrageTimer					= mod:NewBerserkTimer(360)
 local timerTympanicTantrumCast		= mod:NewCastTimer(62776)
@@ -84,6 +85,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 		warnGravityBomb:Show(args.destName)
 		timerGravityBomb:Start(args.destName)
+		yellGravityBomb:Countdown(9, 5)
 	elseif args:IsSpellID(63849) then
 		timerTympanicTantrumCD:Stop()
 		timerHeart:Start()

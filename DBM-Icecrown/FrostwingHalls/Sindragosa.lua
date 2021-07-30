@@ -41,6 +41,8 @@ local timerNextGroundphase		= mod:NewTimer(42.5, "TimerNextGroundphase", 43810, 
 local timerNextFrostBreath		= mod:NewNextTimer(22, 71056, nil, true, nil, 5, nil, DBM_CORE_TANK_ICON)
 local timerNextBlisteringCold	= mod:NewCDTimer(67, 70123, nil, nil, nil, 2, nil, DBM_CORE_DEADLY_ICON, nil, 3)
 local timerNextBeacon			= mod:NewNextCountTimer(16, 70126, nil, nil, nil, 3, nil, DBM_CORE_DEADLY_ICON)
+local yellBeacon				= mod:NewShortFadesYell(70126)
+
 local timerBlisteringCold		= mod:NewCastTimer(6, 70123, nil, nil, nil, 2)
 local timerUnchainedMagic		= mod:NewCDTimer(30, 69762, nil, nil, nil, 3)
 local timerInstability			= mod:NewBuffFadesTimer(5, 69766, nil, nil, nil, 5)
@@ -154,6 +156,9 @@ function mod:SPELL_AURA_APPLIED(args)
 				if self.Options.AnnounceFrostBeaconIcons then
 					SendChatMessage(L.BeaconIconSet:format(8, args.destName), "RAID")
 				end
+			end
+			if args:IsPlayer() then
+				yellBeacon:Countdown(70126, 5)
 			end
 		end
 		self:Unschedule(warnBeaconTargets)
