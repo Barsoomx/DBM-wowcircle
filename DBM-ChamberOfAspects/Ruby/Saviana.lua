@@ -26,6 +26,8 @@ local timerConflagCD		= mod:NewNextTimer(50, 74452)
 local timerBreath			= mod:NewCDTimer(25, 74404, nil, mod:IsTank() or mod:IsHealer())
 local timerEnrage			= mod:NewBuffActiveTimer(10, 78722)
 
+local yellBeaconCount		= mod:NewShortFadesYell(74453)
+
 mod:AddBoolOption("RangeFrame")
 mod:AddBoolOption("BeaconIcon")
 
@@ -73,6 +75,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		timerConflag:Schedule(5)
 		if args:IsPlayer() then
 			specWarnBeacon:Show()
+			yellBeaconCount:Countdown(74453, 3)
 		end
 		if self.Options.BeaconIcon then
 			self:SetIcon(args.destName, beaconIcon, 11)
