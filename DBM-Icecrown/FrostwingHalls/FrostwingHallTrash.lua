@@ -6,6 +6,7 @@ mod:SetRevision(("$Revision: 4408 $"):sub(12, -3))
 mod:RegisterEvents(
 	"SPELL_AURA_APPLIED",
 	"SPELL_AURA_REMOVED",
+	"SPELL_CAST_START",
 	"SPELL_DAMAGE",
 	"CHAT_MSG_MONSTER_YELL"
 )
@@ -19,6 +20,9 @@ local specWarnBlade		= mod:NewSpecialWarningMove(70305)
 local timerConflag		= mod:NewTargetTimer(10, 71785)
 local timerBanish		= mod:NewTargetTimer(6, 71298)
 
+local timerCastRoar 	= mod:NewCastTimer(2.5, 36922)
+local timerNextRoar		= mod:NewCDTimer(25, 36922)
+
 mod:RemoveOption("HealthFrame")
 
 function mod:SPELL_AURA_APPLIED(args)
@@ -28,6 +32,13 @@ function mod:SPELL_AURA_APPLIED(args)
 	elseif args:IsSpellID(71298) then
 		warnBanish:Show(args.destName)
 		timerBanish:Start(args.destName)
+	end
+end
+
+function mod:SPELL_CAST_START(args)
+	if args:IsSpellID(36922) then
+		timerCastRoar:Start()
+		timerNextRoar:Schedule(2.5)
 	end
 end
 
