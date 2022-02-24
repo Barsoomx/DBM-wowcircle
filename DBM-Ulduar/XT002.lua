@@ -22,7 +22,7 @@ local specWarnGravityBomb			= mod:NewSpecialWarningYou(64234)
 local specWarnConsumption			= mod:NewSpecialWarningMove(64206)--Hard mode void zone dropped by Gravity Bomb
 local yellGravityBomb				= mod:NewShortFadesYell(64234)
 
-local enrageTimer					= mod:NewBerserkTimer(360)
+local enrageTimer					= mod:NewBerserkTimer(600)
 local timerTympanicTantrumCast		= mod:NewCastTimer(62776)
 local timerTympanicTantrum			= mod:NewBuffActiveTimer(8, 62776)
 local timerTympanicTantrumCD		= mod:NewCDTimer(60, 62776, nil, nil, nil, 2, nil, DBM_CORE_DEADLY_ICON, nil, 3)
